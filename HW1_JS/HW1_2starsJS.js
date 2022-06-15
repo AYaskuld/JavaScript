@@ -10,8 +10,8 @@ function checkAge(age) {
         console.log('The age is not a number.')
     }
 
-    else if (age < 0) {
-        console.log('The age cannot be less than 0')
+    else if (age <= 0) {
+        console.log('The age cannot be less than 1')
     }
     else if (age < age_2) {
         console.log('You don\'t have access cause your age is ' + age + '. ' + ' It\'s less then ' + age_2)

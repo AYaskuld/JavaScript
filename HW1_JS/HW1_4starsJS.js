@@ -9,8 +9,8 @@ if (typeof age == 'boolean') {
 }
 else {
     age = +age
-    if (age < 0) {
-        document.write('The age cannot be less than 0')
+    if (age <= 0) {
+        document.write('The age cannot be less than 1')
     }
     else if (age < age_2) {
         document.write('You don\'t have access cause your age is ' + age + '. ' + ' It\'s less then ' + age_2)

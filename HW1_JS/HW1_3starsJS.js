@@ -1,18 +1,13 @@
 /*3**:
 Преобразовать 2* таким образом, чтобы значение '2' (строка в которой лежит ТОЛЬКО ЦИФРА) пропускалось,
 преобразовываясь в number*/
-
+let age_2 = 18
+let age_3 = 60
 function checkAge(age) {
-    let age_2 = 18
-    let age_3 = 60
 
+    if (age && !isNaN(age) && age != true) {
 
-    if (typeof age == 'boolean') {
-        console.log('The age can\'t be boolean')
-    }
-    else {
-        age = +age
-        if (age <= 0) {
+        if (age < 0) {
             console.log('The age cannot be less than 1')
         }
         else if (age < age_2) {
@@ -25,9 +20,17 @@ function checkAge(age) {
             console.log('Keep calm and look Culture channel')
         }
         else {
-            console.log('The age is not a number.')
+            console.log('Technical works.')
         }
     }
+    else { console.log('Not a number') }
 }
 
-checkAge('60')
+checkAge(17)
+checkAge('18')
+checkAge(60)
+checkAge(0)
+checkAge('vxcv')
+checkAge('20')
+checkAge(true)
+checkAge('')

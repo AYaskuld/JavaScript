@@ -5,10 +5,14 @@ e.g. function printSmile(stroka, numberOfRows)*/
 
 function smile(x, y) {
     let e = x
-    console.log(x)
+    let arr = [x]
     for (i = 1; i < y; i++) {
         x = x + e
-        console.log(x)
+        arr[i] = x
     }
+    alert(arr.join('\r\n'))
+
 }
+
 smile(prompt('Введи слово'), prompt('Введи количество строк'))
+//smile('das', 5)

@@ -4,7 +4,7 @@
 function pow(i, e) {
     //.pow(x,e) - воззводит число х в степень е
     i = Math.pow(i, e)
-    document.write(i)
+    alert(i)
 }
 pow(
     prompt('Введите число'),

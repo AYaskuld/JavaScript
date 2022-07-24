@@ -59,11 +59,10 @@ const enterprises = [
     }
 ]
 
-/* 1. Вывести все предприятия и их отделы. Рядом указать количество сотрудников.
-Для предприятия посчитать сумму всех сотрудников во всех отделах. */
 
+//Utilites
 
-/* const employeesCountHelper = function (number) {
+const employeesCountHelper = function (number) {
     //приведение вводимого числа к строке(toString()), разделение элементов на массив(split('')),
     // возвращение последнего элемента массива (pop())(возвращение первого элемента shift())
     lastNumber = number.toString().split('').pop()
@@ -76,7 +75,45 @@ const enterprises = [
     }
     else return ' нет сотрудников '
 }
-employeesCountHelper('asda')
+//console.log(employeesCountHelper('20'))
+
+const getNewId = function (company) {
+    let maxId = 0
+    company.forEach(comp => {
+        if (maxId < comp.id) maxId = comp.id
+        if (comp.departments) {
+            comp.departments.forEach(dept => {
+                if (maxId < dept.id) maxId = dept.id
+            })
+
+        }
+    })
+    return maxId + 1
+}
+//console.log(getNewId(enterprises))
+
+const getEnterprise = function (val) {
+    let enterprise = enterprises.find(el => el.id === val || el.name === val)
+    return enterprise ? enterprise : false
+}
+
+const getDepartment = function (val) {
+    let department
+    enterprises.forEach((company) => {
+        const dept = company.departments.find(el => { return el.id === val || el.name === val })
+        if (dept) department = dept
+    })
+    // enterprises.departments.find(el => el.id === val || el.name === val)
+    return department ? department : false
+}
+
+//console.log(getDepartment(10))
+
+
+//Functions
+//_____________________________________________________________________________________________
+/* 1. Вывести все предприятия и их отделы. Рядом указать количество сотрудников.
+Для предприятия посчитать сумму всех сотрудников во всех отделах. */
 
 function company(companys) {
     companys.forEach(company => {
@@ -102,7 +139,7 @@ function company(companys) {
         console.log(deps.join(`\n `))
     });
 }
-company(enterprises) */
+//company(enterprises)
 
 /* 2. Написать функцию, которая будет принимать 1 аргумент
 (id отдела или название отдела и возвращать название предприятия, к которому относится). */
@@ -126,7 +163,7 @@ function companyId(id) {
 }
 //__________________________________________________________
 //с использованием функции find
-function companyId1(val) {
+function getEnterpriseByDepartment(val) {
     let enterprise
     enterprises.forEach(compId => {
         let department
@@ -144,14 +181,96 @@ function companyId1(val) {
 }
 
 
-console.log(companyId())
+//console.log(companyId1(11))
 
 //3. Написать функцию, которая будет добавлять предприятие. В качестве аргумента принимает название предприятия
 
-//function addEnterprises(addEnt) {
-//let enterprise = enterprises.map((el) => JSON.stringify(el))
-//enterprises.push('куку')
+function addEnterprises(name) {
+    enterprises.push({
+        id: getNewId(enterprises),
+        name: name,
+        departments: []
+    })
+
+}
+addEnterprises('Testers')
+
+//4. Добавление отдела в предприятие
+const addDepartment = function (entId, name, count = 0) {
+    const enterprise = getEnterprise(entId)
+    if (enterprise) {
+        enterprise.departments.push({
+            id: getNewId(enterprises),
+            name: name,
+            employees_count: count
+        })
+    }
+}
+
+addDepartment(11, 'QA', 20)
+addDepartment('Testers', 'AQA', 5)
+//console.log(enterprises[3])
+
+//5. Написать функцию для редатирования названия предприятия. Принимает в качестве аргмента id пердприятия и новое имя предприятия.
+
+const editEnterprise = function (val, name) {
+    const enterprise = getEnterprise(val)
+    if (enterprise) {
+        enterprise.name = name;
+    }
+    //создание кастомной ошибки
+    else throw new Error('No such enterprise')
+}
+editEnterprise(11, 'Devs')
+
+
+//6. Написать функцию для редатирования названия отдела. Принимает в качестве аргмента id пердприятия и новое имя отдела.
+const editDepartmet = function (val, name) {
+    const department = getDepartment(val)
+    if (department) {
+        department.name = name;
+    }
+    //создание кастомной ошибки
+    else throw new Error('No such department')
+}
+
+editDepartmet(12, 'Devops')
+//console.log(enterprises[3])
+//7. удаление предприятия
+const deleteEnterprise = function (val) {
+    //находим номер индекса под которым числится наше предприятие
+    const index = enterprises.findIndex(el => el.id == val)
+    //splice - Удаление элемента по ( индексу, сколько элементов будет удалено справа на лево)
+    enterprises.splice(index, 1)
+}
+//deleteEnterprise(9)
 //console.log(enterprises)
-//}
 
+//8.Удаление департамента
+const deleteDepartmens = function (val) {
+    enterprises.forEach(el => {
+        let index = el.departments.findIndex(el => el.id == val)
+        if (index !== -1) {
+            el.departments.splice(index, 1)
+        }
+    })
+}
 
+//deleteDepartmens()
+//console.log()
+
+//9.Написать функцию для переноса сотрудников между отделами одного предприятия
+//в качестве аргумента принимает два значения: id отдела. из которого будут переноситься сотрудники и id отдела, в который будут переноситься
+
+const moveEmployees = function (currentId, newId) {
+    const current = getDepartment(currentId)
+    const newdep = getDepartment(newId)
+    if (getEnterpriseByDepartment(currentId) === getEnterpriseByDepartment(newId) && newId && currentId) {
+        newdep.employees_count += current.employees_count
+        current.employees_count = 0
+    }
+    else throw Error('Something went wrong')
+
+}
+moveEmployees(8, 7)
+//console.log(enterprises[1])

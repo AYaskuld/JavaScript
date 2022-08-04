@@ -81,30 +81,36 @@ const users = [
         registrationDate: '12.10.2021'
     },
 ];
-//function dateReg(x) {
-//    users.forEach(user => {
-//        if (user.registrationDate == x)
-//            console.log(user)
-//    })
-//}
+
+//Выполнение задания с использованием метода .forEach()
+function dateReg(x) {
+    users.forEach(user => {
+        if (user.registrationDate == x)
+            console.log(user)
+    })
+}
+//Выполнение задания с использованием метода .filter()
+
+//Первый способ
 const user = users.filter(user => (user.registrationDate == '10.10.2021' || user.registrationDate == '09.10.2021'))
 console.log(user)
 
-//function dateReg(x) {
-//    users.filter(user => {
-//        if (user.registrationDate == x) {
-//           return (user)
-//        }
-//       console.log(user)
-//   })
+//Второй способ
+function dateReg(x) {
+    users.filter(user => {
+        if (user.registrationDate == x) {
+           return (user)
+        }
+       console.log(user)
+   })
+}
 
-//}
-
-//function dateReg(x) {
-//    users.map(user => {
-//        if (user.registrationDate == x) {
-//            console.log(user)
-//       }
-//    })
-//}
+//Выполнение задания с использованием метода .map()
+function dateReg(x) {
+    users.map(user => {
+        if (user.registrationDate == x) {
+            console.log(user)
+       }
+    })
+}
 

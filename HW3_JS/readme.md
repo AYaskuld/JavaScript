@@ -30,4 +30,5 @@
 
 Пример вывода в task4.txt  
 <a href = "https://github.com/AYaskuld/JavaScript/blob/main/HW3_JS/hw3_4.js">Решение.</a>
+
 ---

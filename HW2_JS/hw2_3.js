@@ -12,7 +12,8 @@ function getWordStructure(word) {
     //.length - подсчитывает количество элементов массива
     consonants = word.match(/[B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z]/gi).length
     vowels = word.match(/[A, E, I, O, U, Y]/gi).length
-
-    alert('В слове ' + word + '\n' + 'Согласных = ' + consonants + '. ' + 'Гласных = ' + vowels + '.')
+    
+    console.log('В слове ' + word + '\n' + 'Согласных = ' + consonants + '. ' + 'Гласных = ' + vowels + '.')
+    //alert('В слове ' + word + '\n' + 'Согласных = ' + consonants + '. ' + 'Гласных = ' + vowels + '.')
 }
 getWordStructure(prompt('Введите слово на английском'))
